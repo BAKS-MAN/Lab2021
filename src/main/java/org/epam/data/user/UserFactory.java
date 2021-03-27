@@ -2,8 +2,8 @@ package org.epam.data.user;
 
 import org.epam.data.dto.UserDTO;
 
-import static org.epam.util.PropertyReader.getTestData;
 import static org.epam.util.TestDataConstants.*;
+import static org.epam.util.TestDataReader.getTestData;
 
 public class UserFactory {
     public static UserDTO getUser(String userType) {

@@ -7,4 +7,5 @@ Feature: User is able to edit dashboard
     When login as admin
     Then dashboard page is open
     And add new dashboard
+    And edit dashboard
     And delete added dashboard

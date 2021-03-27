@@ -13,4 +13,7 @@ public final class TestDataConstants {
 
     public static final String ADMIN_LOGIN = "reportportal.admin.login";
     public static final String ADMIN_PASSWORD = "reportportal.admin.password";
+
+    public static final String PROD_USER_LOGIN = "prod.user.login";
+    public static final String PROD_USER_PASSWORD = "prod.user.password";
 }

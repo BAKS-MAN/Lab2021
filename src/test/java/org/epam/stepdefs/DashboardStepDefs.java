@@ -18,13 +18,22 @@ public class DashboardStepDefs {
 
     @When("^add new dashboard$")
     public void addNewDashboard() {
-        String dashboardName = getCurrentDateWithTime("dd-MM-yy-HHmm");
+        String dashboardName = generateDashboardName();
         dashboardPage.addNewDashboard(dashboardName);
         Assert.assertTrue("dashboard page is added", dashboardPage.isAddedDashBoardDisplayed(dashboardName));
+    }
+
+    @When("^edit dashboard$")
+    public void editDashboard() {
+        dashboardPage.setNewDashboardName(generateDashboardName());
     }
 
     @When("^delete added dashboard$")
     public void deleteAddedDashboard() {
         dashboardPage.deleteDshBoard();
+    }
+
+    private String generateDashboardName() {
+        return getCurrentDateWithTime("dd-MM-yy-HHmm");
     }
 }

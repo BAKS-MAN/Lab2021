@@ -1,29 +1,28 @@
 package pages;
 
+import net.serenitybdd.core.annotations.findby.FindBy;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class SettingsPage extends AbstractPage {
 
     @FindBy(xpath = "//div[contains(@class, 'navigationTabs')]/a[contains(@href, 'general')]")
-    private WebElement generalSettingTab;
+    private WebElementFacade generalSettingTab;
 
     private String dropdown = "//span[.='%s']/..//div[contains(@class, 'dropdown-container')]";
 
     private String dropdownSelectedValue = "//span[contains(@class, 'inputDropdown__value')]";
 
     @FindBy(xpath = "//div[contains(@class, 'inputDropdown__opened')]//div[contains(@class, 'single-option')]")
-    private List<WebElement> dropdownOptions;
-
+    private List<WebElementFacade> dropdownOptions;
 
     @FindBy(xpath = "//button[@type='submit']")
-    private WebElement submitButton;
+    private WebElementFacade submitButton;
 
     @FindBy(xpath = "//p[.='Project settings were successfully updated']")
-    private WebElement successfulNotification;
+    private WebElementFacade successfulNotification;
 
 
     public boolean isSettingsPageDisplayed() {
