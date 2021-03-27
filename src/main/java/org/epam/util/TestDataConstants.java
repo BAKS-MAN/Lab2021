@@ -1,12 +1,10 @@
-package org.epam.common;
+package org.epam.util;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class TestDataConstants {
-    public static final String BASE_URI = "base.uri";
-
     public static final String REGULAR_USER = "regular user";
     public static final String ADMIN_USER = "admin";
 

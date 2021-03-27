@@ -1,4 +1,4 @@
-package org.epam.common;
+package org.epam.util;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -11,8 +11,8 @@ import io.restassured.parsing.Parser;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.config.ObjectMapperConfig.objectMapperConfig;
-import static org.epam.common.TestDataConstants.BASE_URI;
-import static org.epam.common.TestDataService.getProperty;
+import static org.epam.util.ConfigurationConstants.BASE_URI;
+import static org.epam.util.PropertyReader.getConfigData;
 
 public class RestApiConfig {
     private static RestApiConfig instance;
@@ -34,7 +34,7 @@ public class RestApiConfig {
 
     private RequestSpecification requestSpecificationBuilder() {
         return new RequestSpecBuilder()
-                .setBaseUri(getProperty(BASE_URI))
+                .setBaseUri(getConfigData(BASE_URI))
                 .setContentType(ContentType.JSON)
                 .build();
     }

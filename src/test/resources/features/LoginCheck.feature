@@ -1,11 +1,12 @@
-@test_001
+@Test_001
 
-Feature: User is able to edit dashboard
+Feature: User is able to login
 
   Scenario Outline: login check
     Given open reportportal main page
     When login as <userType>
-    Then dashboard page is open
+    Then user is logged in
+    When logout
 
     Examples:
       | userType     |
