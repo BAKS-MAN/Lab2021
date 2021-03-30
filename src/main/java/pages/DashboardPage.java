@@ -2,15 +2,10 @@ package pages;
 
 import org.epam.data.dto.DataStorage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class DashboardPage extends AbstractPage {
-
-    public DashboardPage(WebDriver driver) {
-        super(driver);
-    }
 
     DataStorage dataStorage = DataStorage.getInstance();
 
@@ -46,7 +41,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     public boolean isAddedDashBoardDisplayed(String dashboardName) {
-        WebElement element = driver.findElement(By.xpath(String.format(openedDashBoardTitle, dashboardName)));
+        WebElement element = find(By.xpath(String.format(openedDashBoardTitle, dashboardName)));
         return isElementDisplayed(element);
     }
 

@@ -13,18 +13,20 @@
     <properties>
         <selenium-java.version>3.141.59</selenium-java.version>
         <webdrivermanager.version>4.3.1</webdrivermanager.version>
-        <serenity.version>2.3.12</serenity.version>
-        <serenity.maven.version>2.3.12</serenity.maven.version>
-        <cucumber.version>6.9.1</cucumber.version>
+        <serenity.version>2.4.1</serenity.version>
+        <serenity.cucumber.version>2.4.1</serenity.cucumber.version>
+        <serenity.maven.version>2.4.1</serenity.maven.version>
+        <cucumber.version>6.10.2</cucumber.version>
         <lombok.version>1.18.18</lombok.version>
-        <junit.verion>5.6.3</junit.verion>
+        <junit.verion>4.13.2</junit.verion>
         <assertj.version>3.19.0</assertj.version>
         <rest-assured.version>4.3.3</rest-assured.version>
         <gson.version>2.8.6</gson.version>
         <google-api.version>1.31.0</google-api.version>
         <log4j.version>2.14.1</log4j.version>
+        <logback.version>1.2.3</logback.version>
         <surefire.plugin.verion>3.0.0-M5</surefire.plugin.verion>
-        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <default.encoding>UTF-8</default.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
@@ -46,11 +48,19 @@
             <version>${webdrivermanager.version}</version>
         </dependency>
 
+        <!-- Serenity -->
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
             <version>${serenity.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <version>${serenity.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -62,11 +72,19 @@
 
         <dependency>
             <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-screenplay</artifactId>
+            <artifactId>serenity-ensure</artifactId>
             <version>${serenity.version}</version>
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-cucumber6</artifactId>
+            <version>${serenity.cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-core</artifactId>
@@ -101,9 +119,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <version>${junit.verion}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -136,6 +155,12 @@
             <version>${log4j.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -145,19 +170,23 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.plugin.verion}</version>
                 <configuration>
-                    <skip>true</skip>
+                    <includes>
+                        <include>**/RunCucumberTest.java</include>
+                    </includes>
+                    <parallel>methods</parallel>
+                    <threadCount>${parallel.tests}</threadCount>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${surefire.plugin.verion}</version>
                 <configuration>
                     <includes>
+                        <include>**/RunCucumberTest.java</include>
                         <include>**/*Test.java</include>
+                        <include>**/*Tests.java</include>
                         <include>**/Test*.java</include>
                         <include>**/*TestSuite.java</include>
-                        <include>**/When*.java</include>
                     </includes>
                     <parallel>classes</parallel>
                     <threadCount>${parallel.tests}</threadCount>
@@ -189,6 +218,13 @@
                 <configuration>
                     <tags>${tags}</tags>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.serenity-bdd</groupId>
+                        <artifactId>serenity-core</artifactId>
+                        <version>${serenity.version}</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <id>serenity-reports</id>

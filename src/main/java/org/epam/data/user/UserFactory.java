@@ -2,22 +2,18 @@ package org.epam.data.user;
 
 import org.epam.data.dto.UserDTO;
 
-import static org.epam.common.TestDataConstants.ADMIN_USER;
-import static org.epam.common.TestDataConstants.REGULAR_USER;
+import static org.epam.util.PropertyReader.getTestData;
+import static org.epam.util.TestDataConstants.*;
 
 public class UserFactory {
     public static UserDTO getUser(String userType) {
-        UserDTO user;
         switch (userType) {
             case REGULAR_USER:
-                user = new AdminUser();
-                break;
+                return new UserDTO(getTestData(ADMIN_LOGIN), getTestData(ADMIN_PASSWORD), ADMIN_USER, "");
             case ADMIN_USER:
-                user = new RegularUser();
-                break;
+                return new UserDTO(getTestData(USER_LOGIN), getTestData(USER_PASSWORD), REGULAR_USER, "");
             default:
                 throw new IllegalArgumentException(" user type: '" + userType + "' is not supported.");
         }
-        return user;
     }
 }

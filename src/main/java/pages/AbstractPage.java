@@ -1,10 +1,9 @@
 package pages;
 
 import com.google.common.base.Stopwatch;
+import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,25 +11,16 @@ import java.util.function.BooleanSupplier;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public class AbstractPage {
-    protected WebDriver driver;
-
-    public AbstractPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
-
-    protected void openUrl(String url) {
-        driver.get(url);
-    }
+public class AbstractPage extends PageObject {
 
     protected WebElement waitForElementPresent(WebElement webElement, String errorMessage, long timeOutInSeconds) {
-        return new WebDriverWait(driver, timeOutInSeconds).withMessage(errorMessage)
+        return new WebDriverWait(getDriver(), timeOutInSeconds).withMessage(errorMessage)
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 
     protected WebElement waitForElementPresent(WebElement webElement, long timeOutInSeconds) {
-        return new WebDriverWait(driver, timeOutInSeconds).withMessage("element: '" + webElement + "' was not found")
+        return new WebDriverWait(getDriver(), timeOutInSeconds)
+                .withMessage("element: '" + webElement + "' was not found")
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 
