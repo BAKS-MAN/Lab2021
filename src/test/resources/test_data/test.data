@@ -2,3 +2,5 @@ reportportal.admin.login=superadmin
 reportportal.admin.password=R@ger1101
 reportportal.user.login=default
 reportportal.user.password=1q2w3e
+prod.user.login=sergei_bykov@epam.com
+prod.user.password=P@ssw0rd123

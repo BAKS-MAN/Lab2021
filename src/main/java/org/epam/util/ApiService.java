@@ -1,6 +1,5 @@
 package org.epam.util;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 import java.util.HashMap;
@@ -12,8 +11,7 @@ public class ApiService {
     private ApiClient apiClient = new ApiClient();
 
     public Response getCompositeInfo() {
-        String url = RestAssured.baseURI + COMPOSITE_INFO;
         Map<String, Object> queryParams = new HashMap<>();
-        return apiClient.getRequest(queryParams, url);
+        return apiClient.getRequest(queryParams, COMPOSITE_INFO);
     }
 }

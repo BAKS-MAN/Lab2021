@@ -11,8 +11,8 @@ import io.restassured.parsing.Parser;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.config.ObjectMapperConfig.objectMapperConfig;
+import static org.epam.util.ConfigDataReader.getConfigData;
 import static org.epam.util.ConfigurationConstants.BASE_URI;
-import static org.epam.util.PropertyReader.getConfigData;
 
 public class RestApiConfig {
     private static RestApiConfig instance;
