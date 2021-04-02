@@ -3,9 +3,12 @@ package pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 
+import static org.epam.util.ConfigDataReader.getConfigData;
+import static org.epam.util.ConfigurationConstants.BASE_URI;
+
 public class HomePage extends AbstractPage {
 
-    private static final String homePageUrl = "http://localhost:8080/";
+    private static final String homePageUrl = getConfigData(BASE_URI);
 
     @FindBy(xpath = "//div[contains(@class, 'loginForm__login')]//input")
     private WebElementFacade loginInputField;
