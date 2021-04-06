@@ -46,6 +46,11 @@ public class HomePageStepDefs {
         homePage.clickLogoutButton();
     }
 
+    @Then("^user is not logged in$")
+    public void userIsNotLoggedIn() {
+        Assert.assertFalse("user is not logged in", homePage.isUserBlockDisplayed());
+    }
+
     @When("^navigate to settings page$")
     public void navigateToSettingsPage() {
         homePage.goToSettings();

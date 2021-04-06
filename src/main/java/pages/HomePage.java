@@ -33,7 +33,7 @@ public class HomePage extends AbstractPage {
     }
 
     public void enterLoginData(String login, String password) {
-        waitForElementPresent(loginInputField, "login form is not displayed", 3);
+        waitForElementPresent(loginInputField, "login form is not displayed", 5);
         loginInputField.sendKeys(login);
         passwordInputField.sendKeys(password);
     }
