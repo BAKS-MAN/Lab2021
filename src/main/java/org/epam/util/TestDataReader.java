@@ -1,12 +1,14 @@
 package org.epam.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TestDataReader {
     private static final String TEST_DATA_PATH = "test_data/test.data";
 

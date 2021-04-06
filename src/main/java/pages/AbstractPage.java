@@ -1,16 +1,17 @@
 package pages;
 
-import com.google.common.base.Stopwatch;
+import lombok.extern.slf4j.Slf4j;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.function.BooleanSupplier;
+import java.time.Duration;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
+@Slf4j
 public class AbstractPage extends PageObject {
 
     protected WebElement waitForElementPresent(WebElement webElement, String errorMessage, long timeOutInSeconds) {
@@ -36,28 +37,18 @@ public class AbstractPage extends PageObject {
         return element;
     }
 
-    protected boolean isElementDisplayed(WebElement webElement) {
+    protected boolean isElementDisplayed(WebElementFacade webElement, int waitTimeoutSec) {
         try {
-            return webElement.isDisplayed();
-        } catch (NoSuchElementException e) {
+            fluentWaitUntilElementPresent(webElement, waitTimeoutSec);
+            return webElement.isCurrentlyVisible();
+        } catch (TimeoutException | NoSuchElementException e) {
+            log.debug(String.format("element: '%s' was not found after %d seconds", webElement, waitTimeoutSec));
             return false;
         }
     }
 
-    public static void waitUntil(final BooleanSupplier condition,
-                                 final long waitTimeoutSec, final long waitIntervalSec) {
-        final Stopwatch waitTimer = Stopwatch.createStarted();
-        while (waitTimer.elapsed(SECONDS) < waitTimeoutSec) {
-            try {
-                Thread.sleep(waitIntervalSec);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (condition.getAsBoolean()) {
-                waitTimer.stop();
-                return;
-            }
-        }
-        waitTimer.stop();
+    protected void fluentWaitUntilElementPresent(WebElement webElement, int waitTimeoutSec) throws TimeoutException {
+        waitForCondition().withTimeout(Duration.ofSeconds(waitTimeoutSec)).pollingEvery(Duration.ofSeconds(1))
+                .until(ExpectedConditions.visibilityOf(webElement));
     }
 }
