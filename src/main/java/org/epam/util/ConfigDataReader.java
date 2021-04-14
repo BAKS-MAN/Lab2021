@@ -1,5 +1,7 @@
 package org.epam.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
@@ -9,7 +11,7 @@ import java.util.Properties;
 import static org.epam.util.ConfigurationConstants.ENVIRONMENT;
 import static org.epam.util.ConfigurationConstants.LOCAL_ENVIRONMENT;
 
-
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ConfigDataReader {
 
     public static String getConfigData(String propertyName) {

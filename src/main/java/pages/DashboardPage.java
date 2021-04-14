@@ -25,7 +25,6 @@ public class DashboardPage extends AbstractPage {
     private WebElementFacade deleteDashboardModalButton;
 
     private static final String ADD_BUTTON = "Add";
-    private static final String CANCEL_BUTTON = "Cancel";
     private static final String UPDATE_BUTTON = "Update";
     private String dashboardModalActionButton = "//div[contains(@class, 'modalFooter')]/button[.='%s']";
     private String openedDashBoardTitle = "//ul[contains(@class, 'pageBreadcrumbs')]//span[.='%s']";
@@ -35,18 +34,19 @@ public class DashboardPage extends AbstractPage {
         addNewDashboardButton.click();
         setDashboardName(dashboardName);
         clickDashboardModalButton(ADD_BUTTON);
-        waitUntil(() -> isAddedDashBoardDisplayed(dashboardName), 5, 1);
         dataStorage.setDashboardName(dashboardName);
     }
 
     public boolean isDashBoardPageDisplayed() {
-        waitUntil(() -> isElementDisplayed(addNewDashboardButton), 5, 1);
-        return isElementDisplayed(addNewDashboardButton);
+        return isElementDisplayed(addNewDashboardButton, 5);
     }
 
     public boolean isAddedDashBoardDisplayed(String dashboardName) {
-        WebElementFacade element = find(By.xpath(String.format(openedDashBoardTitle, dashboardName)));
-        return isElementDisplayed(element);
+        return isElementDisplayed(getDashBoardTitleElement(dashboardName), 5);
+    }
+
+    private WebElementFacade getDashBoardTitleElement(String dashboardName) {
+        return find(By.xpath(String.format(openedDashBoardTitle, dashboardName)));
     }
 
     public void deleteDshBoard() {
@@ -67,7 +67,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     public void setNewDashboardName(String dashboardName) {
-        editButton.click();
+        clickEditButton();
         setDashboardName(dashboardName);
         clickDashboardModalButton(UPDATE_BUTTON);
     }

@@ -1,6 +1,7 @@
 package pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
+import net.serenitybdd.core.exceptions.NoSuchElementException;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 
@@ -26,8 +27,7 @@ public class SettingsPage extends AbstractPage {
 
 
     public boolean isSettingsPageDisplayed() {
-        waitUntil(() -> isElementDisplayed(generalSettingTab), 5, 1);
-        return isElementDisplayed(generalSettingTab);
+        return isElementDisplayed(generalSettingTab, 5);
     }
 
     private void openDropDown(String settingName) {
@@ -41,8 +41,10 @@ public class SettingsPage extends AbstractPage {
     public void changeSettingToRandomValue(String settingName) {
         openDropDown(settingName);
         String currentValue = getDropdownSelectedValue(settingName);
-        dropdownOptions.stream().filter(webElement -> !webElement.getText().equals(currentValue))
-                .findAny().get().click();
+        dropdownOptions.stream().filter(webElement -> !webElement.getText().equalsIgnoreCase(currentValue))
+                .findAny()
+                .orElseThrow(() -> new NoSuchElementException(String.format("setting %s was not found", settingName)))
+                .click();
     }
 
     public void clickSubmitButton() {
@@ -50,7 +52,6 @@ public class SettingsPage extends AbstractPage {
     }
 
     public boolean isSuccessfulNotificationDisplayed() {
-        waitUntil(() -> isElementDisplayed(successfulNotification), 3, 1);
-        return isElementDisplayed(successfulNotification);
+        return isElementDisplayed(successfulNotification, 3);
     }
 }

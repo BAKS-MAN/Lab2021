@@ -8,7 +8,7 @@ import static org.epam.util.ConfigurationConstants.BASE_URI;
 
 public class HomePage extends AbstractPage {
 
-    private static final String homePageUrl = getConfigData(BASE_URI);
+    private static final String HOMEPAGE_URL = getConfigData(BASE_URI);
 
     @FindBy(xpath = "//div[contains(@class, 'loginForm__login')]//input")
     private WebElementFacade loginInputField;
@@ -29,7 +29,7 @@ public class HomePage extends AbstractPage {
     private WebElementFacade settingIcon;
 
     public void openHomePage() {
-        openUrl(homePageUrl);
+        openUrl(HOMEPAGE_URL);
     }
 
     public void enterLoginData(String login, String password) {
@@ -47,8 +47,7 @@ public class HomePage extends AbstractPage {
     }
 
     public boolean isUserBlockDisplayed() {
-        waitUntil(() -> isElementDisplayed(userBlockMenu), 5, 1);
-        return isElementDisplayed(userBlockMenu);
+        return isElementDisplayed(userBlockMenu, 5);
     }
 
     public void openUserBlockMenu() {
