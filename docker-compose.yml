@@ -1,0 +1,13 @@
+tests:
+  #  image: maven:3.8.1-openjdk-8
+  image: markhobson/maven-chrome:jdk-8
+  stop_signal: SIGKILL
+  stdin_open: true
+  tty: true
+  working_dir: $PWD
+  volumes:
+    - $PWD:$PWD
+    - /var/run/docker.sock:/var/run/docker.sock
+    # Maven cache (optional)
+    - ~/.m2:/root/.m2
+  command: mvn clean verify
