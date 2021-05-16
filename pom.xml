@@ -16,6 +16,7 @@
         <serenity.version>2.4.1</serenity.version>
         <serenity.cucumber.version>2.4.1</serenity.cucumber.version>
         <serenity.maven.version>2.4.1</serenity.maven.version>
+        <serenity.reportportal.version>1.5.6</serenity.reportportal.version>
         <cucumber.version>6.10.2</cucumber.version>
         <lombok.version>1.18.18</lombok.version>
         <junit.verion>4.13.2</junit.verion>
@@ -75,6 +76,12 @@
             <artifactId>serenity-cucumber6</artifactId>
             <version>${serenity.cucumber.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.invictum</groupId>
+            <artifactId>serenity-reportportal-integration</artifactId>
+            <version>${serenity.reportportal.version}</version>
         </dependency>
 
         <!-- Cucumber -->
@@ -155,6 +162,17 @@
         </dependency>
 
     </dependencies>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-epam-reportportal</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/epam/reportportal</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
