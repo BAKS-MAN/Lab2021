@@ -51,4 +51,13 @@ public class AbstractPage extends PageObject {
         waitForCondition().withTimeout(Duration.ofSeconds(waitTimeoutSec)).pollingEvery(Duration.ofSeconds(1))
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
+
+    protected void fluentWaitUntilElementDisappear(WebElement webElement, int waitTimeoutSec) throws TimeoutException {
+        try {
+            waitForCondition().withTimeout(Duration.ofSeconds(waitTimeoutSec)).pollingEvery(Duration.ofSeconds(1))
+                    .until(ExpectedConditions.invisibilityOf(webElement));
+        } catch (TimeoutException | NoSuchElementException e) {
+            log.debug(String.format("element: '%s' was not found after %d seconds", webElement, waitTimeoutSec));
+        }
+    }
 }
