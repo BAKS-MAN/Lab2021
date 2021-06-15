@@ -3,7 +3,6 @@ package org.epam.util;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.commons.io.FileUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -17,7 +16,6 @@ public class ConfigDataReader {
     public static String getConfigData(String propertyName) {
         return getProperty(System.getProperty(ENVIRONMENT, LOCAL_ENVIRONMENT), propertyName);
     }
-
 
     private static String getProperty(String environment, String propertyName) {
         Properties properties = new Properties();

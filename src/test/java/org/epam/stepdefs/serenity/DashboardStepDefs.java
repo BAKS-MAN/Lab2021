@@ -1,9 +1,9 @@
-package org.epam.stepdefs;
+package org.epam.stepdefs.serenity;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import pages.DashboardPage;
+import pages.serenity.DashboardPage;
 
 import static org.epam.util.DateTimeUtil.getCurrentDateWithTime;
 

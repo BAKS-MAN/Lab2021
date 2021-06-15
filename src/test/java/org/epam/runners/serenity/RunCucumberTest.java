@@ -1,4 +1,4 @@
-package org.epam.runners;
+package org.epam.runners.serenity;
 
 
 import io.cucumber.junit.CucumberOptions;

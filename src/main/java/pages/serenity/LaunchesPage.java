@@ -1,4 +1,4 @@
-package pages;
+package pages.serenity;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.ListOfWebElementFacades;
