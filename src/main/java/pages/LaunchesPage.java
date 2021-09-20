@@ -4,7 +4,6 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.ListOfWebElementFacades;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,19 +58,11 @@ public class LaunchesPage extends AbstractPage {
 
     public String getExecutionStatisticsValue(String testSuiteName, String statisticType) {
         String locator = String.format(executionValueXpath, testSuiteName, statisticType);
-        return getStringValueForElement(find(By.xpath(locator)));
+        return getTextFromWebElement(find(By.xpath(locator)));
     }
 
     public String getDefectStatisticsValue(String testSuiteName, String defectType) {
         String locator = String.format(defectValueXpath, testSuiteName, defectType);
-        return getStringValueForElement(find(By.xpath(locator)));
-    }
-
-    private String getStringValueForElement(WebElementFacade webElementFacade) {
-        if (webElementFacade.isPresent()) {
-            return webElementFacade.getTextContent();
-        } else {
-            return null;
-        }
+        return getTextFromWebElement(find(By.xpath(locator)));
     }
 }

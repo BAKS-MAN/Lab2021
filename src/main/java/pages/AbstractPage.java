@@ -8,7 +8,6 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 @Slf4j
@@ -52,12 +51,17 @@ public class AbstractPage extends PageObject {
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    protected void fluentWaitUntilElementDisappear(WebElement webElement, int waitTimeoutSec) throws TimeoutException {
+    protected void fluentWaitUntilElementDisappear(WebElement webElement, int waitTimeoutSec) {
         try {
             waitForCondition().withTimeout(Duration.ofSeconds(waitTimeoutSec)).pollingEvery(Duration.ofSeconds(1))
+                    .withMessage(String.format("Element was not disappeared after %s seconds.", waitTimeoutSec))
                     .until(ExpectedConditions.invisibilityOf(webElement));
-        } catch (TimeoutException | NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             log.debug(String.format("element: '%s' was not found after %d seconds", webElement, waitTimeoutSec));
         }
+    }
+
+    protected String getTextFromWebElement(WebElementFacade webElementFacade) {
+        return webElementFacade.getTextContent();
     }
 }
