@@ -1,9 +1,9 @@
-package org.epam.steps;
+package org.epam.steps.serenity;
 
 import net.thucydides.core.annotations.Step;
 import org.epam.data.test_data.TestReportData;
 import org.junit.Assert;
-import pages.LaunchesPage;
+import pages.serenity.LaunchesPage;
 
 import java.util.List;
 

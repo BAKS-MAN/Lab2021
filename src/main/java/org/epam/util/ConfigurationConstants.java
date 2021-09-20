@@ -8,5 +8,7 @@ public final class ConfigurationConstants {
     public static final String ENVIRONMENT = "env";
     public static final String PROD_ENVIRONMENT = "prod";
     public static final String LOCAL_ENVIRONMENT = "local";
+    public static final String LOCAL_DOCKER_ENVIRONMENT = "docker";
     public static final String BASE_URI = "base.uri";
+    public static final String LOCAL_FOLDER_TO_STORE_FILES = "src/test/resources/files/";
 }

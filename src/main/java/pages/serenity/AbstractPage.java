@@ -1,4 +1,4 @@
-package pages;
+package pages.serenity;
 
 import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.core.pages.WebElementFacade;

@@ -1,4 +1,4 @@
-package org.epam.stepdefs;
+package org.epam.stepdefs.serenity;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -10,7 +10,7 @@ import net.serenitybdd.screenplay.actors.OnlineCast;
 import org.epam.data.dto.UserDTO;
 import org.epam.data.user.UserFactory;
 import org.junit.Assert;
-import pages.HomePage;
+import pages.serenity.HomePage;
 
 @Slf4j
 public class HomePageStepDefs {

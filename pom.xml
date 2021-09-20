@@ -12,29 +12,29 @@
 
     <properties>
         <selenium-java.version>3.141.59</selenium-java.version>
-        <webdrivermanager.version>4.4.3</webdrivermanager.version>
-        <serenity.version>2.4.24</serenity.version>
-        <serenity.cucumber.version>2.4.24</serenity.cucumber.version>
+        <webdrivermanager.version>5.0.2</webdrivermanager.version>
+        <serenity.version>2.6.0</serenity.version>
+        <serenity.cucumber.version>2.5.8</serenity.cucumber.version>
         <serenity.maven.version>2.4.24</serenity.maven.version>
-        <serenity.reportportal.version>1.5.6</serenity.reportportal.version>
-        <cucumber.version>6.10.4</cucumber.version>
+        <serenity.reportportal.version>1.5.8</serenity.reportportal.version>
+        <cucumber.version>6.11.0</cucumber.version>
         <lombok.version>1.18.20</lombok.version>
         <junit.verion>4.13.2</junit.verion>
-        <junit5.verion>5.7.2</junit5.verion>
-        <selenium.junit5.verion>3.4.0</selenium.junit5.verion>
-        <assertj.version>3.19.0</assertj.version>
-        <rest-assured.version>4.3.3</rest-assured.version>
-        <gson.version>2.8.6</gson.version>
-        <google-api.version>1.31.0</google-api.version>
+        <junit5.verion>5.8.0</junit5.verion>
+        <selenium.junit5.verion>4.0.1</selenium.junit5.verion>
+        <assertj.version>3.20.2</assertj.version>
+        <rest-assured.version>4.4.0</rest-assured.version>
+        <gson.version>2.8.8</gson.version>
+        <google-api.version>1.32.1</google-api.version>
         <log4j.version>2.14.1</log4j.version>
-        <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.5</logback.version>
         <apache-csv.version>1.8</apache-csv.version>
         <apache-poi.version>5.0.0</apache-poi.version>
         <surefire.plugin.verion>3.0.0-M5</surefire.plugin.verion>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <default.encoding>UTF-8</default.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <parallel.tests>1</parallel.tests>
         <tags></tags>
     </properties>
@@ -123,6 +123,13 @@
         </dependency>
 
         <!-- jUnit -->
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>selenium-jupiter</artifactId>
+            <version>${selenium.junit5.verion}</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -130,26 +137,26 @@
             <scope>test</scope>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.junit.jupiter</groupId>-->
-        <!--            <artifactId>junit-jupiter-api</artifactId>-->
-        <!--            <version>${junit5.verion}</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit5.verion}</version>
+            <scope>test</scope>
+        </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.junit.jupiter</groupId>-->
-        <!--            <artifactId>junit-jupiter-params</artifactId>-->
-        <!--            <version>${junit5.verion}</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit5.verion}</version>
+            <scope>test</scope>
+        </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.junit.jupiter</groupId>-->
-        <!--            <artifactId>junit-jupiter-engine</artifactId>-->
-        <!--            <version>${junit5.verion}</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit5.verion}</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.vintage</groupId>

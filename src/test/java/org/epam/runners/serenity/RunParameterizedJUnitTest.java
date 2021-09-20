@@ -1,4 +1,4 @@
-package org.epam.runners;
+package org.epam.runners.serenity;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Managed;
