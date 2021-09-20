@@ -10,23 +10,29 @@ public class HomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = getConfigData(BASE_URI);
 
-    @FindBy(xpath = "//div[contains(@class, 'loginForm__login')]//input")
+    @FindBy(css = "div[class*='loginForm__login'] input")
     private WebElementFacade loginInputField;
 
-    @FindBy(xpath = "//div[contains(@class, 'loginForm__password')]//input")
+    @FindBy(css = "div[class*='loginForm__password'] input")
     private WebElementFacade passwordInputField;
 
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(css = "button[type='submit']")
     private WebElementFacade loginButton;
 
-    @FindBy(xpath = "//div[contains(@class, 'userBlock__menu-icon')]")
+    @FindBy(css = "div[class*='userBlock__menu-icon']")
     private WebElementFacade userBlockMenu;
+
+    @FindBy(className = "notification-transition-enter-done")
+    private WebElementFacade loginNotification;
 
     @FindBy(xpath = "//div[text()='Logout']")
     private WebElementFacade logoutButton;
 
-    @FindBy(xpath = "//a[contains(@href, '/settings')]")
+    @FindBy(css = "a[href$= '/settings']")
     private WebElementFacade settingIcon;
+
+    @FindBy(css = "a[href$= '/launches']")
+    private WebElementFacade launches;
 
     public void openHomePage() {
         openUrl(HOMEPAGE_URL);
@@ -56,5 +62,13 @@ public class HomePage extends AbstractPage {
 
     public void goToSettings() {
         settingIcon.click();
+    }
+
+    public void goToLaunches() {
+        launches.click();
+    }
+
+    public void waitForLoginNotificationDisappear() {
+        fluentWaitUntilElementDisappear(loginNotification, 10);
     }
 }
