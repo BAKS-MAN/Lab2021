@@ -12,7 +12,7 @@ import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.config.ObjectMapperConfig.objectMapperConfig;
 import static org.epam.util.ConfigDataReader.getConfigData;
-import static org.epam.util.ConfigurationConstants.BASE_URI;
+import static org.epam.util.ConfigurationConstants.BASE_API_URI;
 
 public class RestApiConfig {
     private static RestApiConfig instance;
@@ -34,7 +34,7 @@ public class RestApiConfig {
 
     private RequestSpecification requestSpecificationBuilder() {
         return new RequestSpecBuilder()
-                .setBaseUri(getConfigData(BASE_URI))
+                .setBaseUri(getConfigData(BASE_API_URI))
                 .setContentType(ContentType.JSON)
                 .build();
     }

@@ -19,6 +19,11 @@ public class HomePageSteps {
         homePage = new HomePage(driver);
     }
 
+    @Step("open Home Page")
+    public void openHomePage() {
+        homePage.openHomePage();
+    }
+
     @Step("login as regular user")
     public void loginAsRegularUser() {
         homePage.openHomePage();

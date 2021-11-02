@@ -15,4 +15,8 @@ public class DateTimeUtil {
     public static String generateTimestamp() {
         return getCurrentDateWithTime("yyyy-MM-dd'T'HH:mm:ss");
     }
+
+    public static String generateTimestampCustomPattern(String datePattern) {
+        return getCurrentDateWithTime(datePattern);
+    }
 }
