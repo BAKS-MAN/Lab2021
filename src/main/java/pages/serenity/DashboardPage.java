@@ -38,11 +38,14 @@ public class DashboardPage extends AbstractPage {
     }
 
     public boolean isDashBoardPageDisplayed() {
-        return isElementDisplayed(addNewDashboardButton, 5);
+        fluentWaitUntilElementPresent(addNewDashboardButton, 5);
+        return addNewDashboardButton.isCurrentlyVisible();
     }
 
     public boolean isAddedDashBoardDisplayed(String dashboardName) {
-        return isElementDisplayed(getDashBoardTitleElement(dashboardName), 5);
+        WebElementFacade dashBoardTitleElement = getDashBoardTitleElement(dashboardName);
+        fluentWaitUntilElementPresent(dashBoardTitleElement, 5);
+        return dashBoardTitleElement.isCurrentlyVisible();
     }
 
     private WebElementFacade getDashBoardTitleElement(String dashboardName) {

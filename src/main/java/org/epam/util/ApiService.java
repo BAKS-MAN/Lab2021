@@ -27,7 +27,7 @@ public class ApiService {
 
     public Response getCompositeInfo() {
         Map<String, Object> queryParams = new HashMap<>();
-        return apiClient.getRequest(queryParams, COMPOSITE_INFO);
+        return apiClient.getUiEndpointRequestWithParams(queryParams, COMPOSITE_INFO);
     }
 
     public Response getAllProjectNames() {

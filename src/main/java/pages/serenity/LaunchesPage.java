@@ -28,7 +28,8 @@ public class LaunchesPage extends AbstractPage {
     private WebElementFacade testSuiteName;
 
     public boolean isLaunchesPageOpened() {
-        return isElementDisplayed(launchFiltersToolbar, 5);
+        fluentWaitUntilElementPresent(launchFiltersToolbar, 5);
+        return launchFiltersToolbar.isCurrentlyVisible();
     }
 
     public List<String> getTableTitles() {
@@ -48,7 +49,8 @@ public class LaunchesPage extends AbstractPage {
     }
 
     public boolean testSuiteDataArePresent() {
-        return isElementDisplayed(testSuiteName, 5);
+        fluentWaitUntilElementPresent(testSuiteName, 5);
+        return testSuiteName.isCurrentlyVisible();
     }
 
     public String getTestSuiteName(int suiteIndex) {

@@ -36,29 +36,17 @@ public class AbstractPage extends PageObject {
         return element;
     }
 
-    protected boolean isElementDisplayed(WebElementFacade webElement, int waitTimeoutSec) {
-        try {
-            fluentWaitUntilElementPresent(webElement, waitTimeoutSec);
-            return webElement.isCurrentlyVisible();
-        } catch (TimeoutException | NoSuchElementException e) {
-            log.debug(String.format("element: '%s' was not found after %d seconds", webElement, waitTimeoutSec));
-            return false;
-        }
-    }
-
-    protected void fluentWaitUntilElementPresent(WebElement webElement, int waitTimeoutSec) throws TimeoutException {
-        waitForCondition().withTimeout(Duration.ofSeconds(waitTimeoutSec)).pollingEvery(Duration.ofSeconds(1))
-                .until(ExpectedConditions.visibilityOf(webElement));
-    }
-
-    protected void fluentWaitUntilElementDisappear(WebElement webElement, int waitTimeoutSec) {
+    protected void fluentWaitUntilElementPresent(WebElementFacade webElement, int waitTimeoutSec) {
         try {
             waitForCondition().withTimeout(Duration.ofSeconds(waitTimeoutSec)).pollingEvery(Duration.ofSeconds(1))
-                    .withMessage(String.format("Element was not disappeared after %s seconds.", waitTimeoutSec))
-                    .until(ExpectedConditions.invisibilityOf(webElement));
-        } catch (NoSuchElementException e) {
-            log.debug(String.format("element: '%s' was not found after %d seconds", webElement, waitTimeoutSec));
+                    .until(ExpectedConditions.visibilityOf(webElement));
+        } catch (TimeoutException | NoSuchElementException e) {
+            log.debug(String.format("element: '%s' was not appeared after %d seconds", webElement, waitTimeoutSec));
         }
+    }
+
+    protected void waitUntilElementDisappear(WebElementFacade webElement, int waitTimeoutSec) {
+        webElement.withTimeoutOf(Duration.ofSeconds(waitTimeoutSec)).waitUntilNotVisible();
     }
 
     protected String getTextFromWebElement(WebElementFacade webElementFacade) {
