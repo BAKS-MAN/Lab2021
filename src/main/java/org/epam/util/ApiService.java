@@ -69,4 +69,8 @@ public class ApiService {
         String uri = String.format(SPECIFIED_DASHBOARD_TEMPLATE, projectName, dashboardId);
         return apiClient.deleteAuthorizedRequest(uri);
     }
+
+    public Response postSlackNotification(String notificationMessage) {
+        return apiClient.postSlackRequest(notificationMessage);
+    }
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import static org.epam.util.AuthApiService.getReportPortalRequestSpecification;
 import static org.epam.util.ConfigDataReader.getConfigData;
 import static org.epam.util.ConfigurationConstants.BASE_URI;
+import static org.epam.util.ConfigurationConstants.SLACK_URI;
 
 public class ApiClient {
 
@@ -28,5 +29,9 @@ public class ApiClient {
 
     public Response deleteAuthorizedRequest(String endpoint) {
         return RestAssured.given(getReportPortalRequestSpecification()).delete(endpoint);
+    }
+
+    public Response postSlackRequest(String body) {
+        return RestAssured.given().baseUri(SLACK_URI).body(body).post();
     }
 }
