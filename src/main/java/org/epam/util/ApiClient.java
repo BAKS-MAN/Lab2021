@@ -5,11 +5,13 @@ import io.restassured.response.Response;
 import java.util.Map;
 
 import static org.epam.util.AuthApiService.getReportPortalRequestSpecification;
+import static org.epam.util.ConfigDataReader.getConfigData;
+import static org.epam.util.ConfigurationConstants.BASE_URI;
 
 public class ApiClient {
 
-    public Response getRequest(Map<String, Object> queryParams, String endpoint) {
-        return RestAssured.given().queryParams(queryParams).get(endpoint);
+    public Response getUiEndpointRequestWithParams(Map<String, Object> queryParams, String endpoint) {
+        return RestAssured.given().baseUri(getConfigData(BASE_URI)).queryParams(queryParams).get(endpoint);
     }
 
     public Response getAuthorizedRequest(String endpoint) {

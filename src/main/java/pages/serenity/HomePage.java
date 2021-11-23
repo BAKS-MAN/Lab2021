@@ -19,7 +19,7 @@ public class HomePage extends AbstractPage {
     @FindBy(css = "button[type='submit']")
     private WebElementFacade loginButton;
 
-    @FindBy(css = "div[class*='userBlock__menu-icon']")
+    @FindBy(css = "div[class*='user-block']")
     private WebElementFacade userBlockMenu;
 
     @FindBy(className = "notification-transition-enter-done")
@@ -53,7 +53,8 @@ public class HomePage extends AbstractPage {
     }
 
     public boolean isUserBlockDisplayed() {
-        return isElementDisplayed(userBlockMenu, 5);
+        fluentWaitUntilElementPresent(userBlockMenu, 5);
+        return userBlockMenu.isCurrentlyVisible();
     }
 
     public void openUserBlockMenu() {
@@ -69,6 +70,8 @@ public class HomePage extends AbstractPage {
     }
 
     public void waitForLoginNotificationDisappear() {
-        fluentWaitUntilElementDisappear(loginNotification, 10);
+        //because sometimes notification appears after 1 sec.
+        fluentWaitUntilElementPresent(loginNotification, 1);
+        waitUntilElementDisappear(loginNotification, 10);
     }
 }

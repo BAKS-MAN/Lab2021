@@ -33,7 +33,7 @@
         <default.encoding>UTF-8</default.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
-        <parallel.tests>1</parallel.tests>
+        <parallel.tests>2</parallel.tests>
         <tags></tags>
     </properties>
 

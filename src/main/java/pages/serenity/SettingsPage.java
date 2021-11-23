@@ -4,7 +4,6 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.exceptions.NoSuchElementException;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
-
 import java.util.List;
 
 public class SettingsPage extends AbstractPage {
@@ -27,7 +26,8 @@ public class SettingsPage extends AbstractPage {
 
 
     public boolean isSettingsPageDisplayed() {
-        return isElementDisplayed(generalSettingTab, 5);
+        fluentWaitUntilElementPresent(generalSettingTab, 5);
+        return generalSettingTab.isCurrentlyVisible();
     }
 
     private void openDropDown(String settingName) {
@@ -52,6 +52,7 @@ public class SettingsPage extends AbstractPage {
     }
 
     public boolean isSuccessfulNotificationDisplayed() {
-        return isElementDisplayed(successfulNotification, 3);
+        fluentWaitUntilElementPresent(successfulNotification, 3);
+        return successfulNotification.isCurrentlyVisible();
     }
 }
